@@ -1,0 +1,123 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:File_Compare"
+        mc:Ignorable="d"
+        Title="Compare" BorderThickness="6"  Width="600" Height="600" ResizeMode="CanResizeWithGrip" BorderBrush="#FFA2C5E2" Background="#FF404040"  FontFamily="Arial" FontSize="10" WindowStartupLocation="CenterScreen" >
+    <Viewbox Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <Grid  x:Name="MainGrid">
+            <Canvas x:Name="BackCanvas" Height="576" Width="600" Background="#FF744707" VerticalAlignment="Center">
+                <Menu x:Name="menu"  Height="22" Background="#FFF9F9F9" Width="315" Canvas.Top="0" >
+                    <MenuItem x:Name="MnuFILE" Header="FILE..." FontSize="14" >
+                        <MenuItem x:Name="MnuOPEN" Header="OPEN..." FontSize="14" Background="White" BorderThickness="0" ToolTip="Select a saved configuration."/>
+                        <MenuItem x:Name="MnuSAVE" Header="SAVE" FontSize="14" Background="White" BorderThickness="0" ToolTip="Saves the current configuration to the existing filename."/>
+                        <MenuItem x:Name="MnuSAVEAS" Header="SAVE AS.." FontSize="14" Background="White" BorderThickness="0" ToolTip="Saves the current configuration to a filename of your choice."/>
+                    </MenuItem>
+                    <MenuItem x:Name="MnuFolders" Header=" FOLDER..." FontSize="14" >
+                        <MenuItem x:Name="MnuEventPath" Header="Show Working Folder name." FontSize="14" Background="White" BorderThickness="0"/>
+                        <MenuItem x:Name="MnuOpenEvent" Header="Open Working Folder." FontSize="14" Background="White" BorderThickness="0"/>
+                    </MenuItem>
+                    <MenuItem x:Name="MnuSort" Header=" SORT..." FontSize="14" >
+                        <MenuItem x:Name="MnuSortOnDate" Header="On DATE." FontSize="14" Background="White" BorderThickness="0"/>
+                        <MenuItem x:Name="MnuSortOnType" Header="On TYPE." FontSize="14" Background="White" BorderThickness="0"/>
+                    </MenuItem>
+
+                    <MenuItem x:Name="MnuCLOSE" Header=" CLOSE" FontSize="14" />
+                    <MenuItem x:Name="MnuHELP" Header="HELP..." FontSize="14" />
+                </Menu>
+                <ListBox x:Name="ListBox1" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="280" IsManipulationEnabled="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" IsTabStop="True" BorderBrush="#FF1BDE12" BorderThickness="4" Canvas.Left="10" Canvas.Top="161" ToolTip="Double-click to update if file choices changed" FontFamily="Lucida Console" FontSize="12">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True" >
+                                    <Setter Property="Foreground" Value="Blue" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+                <ListBox x:Name="ListBox2" HorizontalAlignment="Left" Height="140" VerticalAlignment="Top" Width="280" IsManipulationEnabled="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" IsTabStop="True" BorderBrush="#FF1BDE12" BorderThickness="4" Canvas.Left="310" Canvas.Top="161" ToolTip="Double-click to update if file choices changed" FontFamily="Lucida Console" FontSize="12">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True" >
+                                    <Setter Property="Foreground" Value="Red" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+
+                </ListBox>
+
+                <TextBox x:Name="Search1" Height="26"  Width="88" Canvas.Left="100" Canvas.Top="320" FontFamily="Arial" FontSize="14" BorderBrush="Black" VerticalContentAlignment="Center" ToolTip="Type a search string and ENTER." />
+                <TextBox x:Name="Search2" Height="26"  Width="88" Canvas.Left="400" Canvas.Top="320" FontFamily="Arial" FontSize="14" BorderBrush="Black" VerticalContentAlignment="Center" ToolTip="Type a search string and ENTER." />
+                <Label x:Name="OptionFile" Content="Option file" Height="34.637" Canvas.Left="10" Canvas.Top="20" Width="270.397" FontFamily="Times New Roman" FontSize="17" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsHitTestVisible="True" Foreground="White" ForceCursor="True"/>
+                <Label x:Name="PATH1Select" Content="FOLDER PATH 1" Height="34.637" Canvas.Left="10" Canvas.Top="50" Width="270.397" FontFamily="Times New Roman" FontSize="17" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsHitTestVisible="True" Foreground="White" ForceCursor="True"/>
+                <Label x:Name="PATH2Select" Content="FOLDER PATH 2" Height="34.637" Canvas.Left="320" Canvas.Top="50" Width="270.397" FontFamily="Times New Roman" FontSize="17" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsHitTestVisible="True" Foreground="White" ForceCursor="True"/>
+                <TextBox x:Name="PATH1"  Height="70" Canvas.Left="10" Canvas.Top="90" Width="280" Background="White" FontFamily="Lucida Console" FontSize="14" HorizontalAlignment="Left" Text="Select FOLDER 1 PATH" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"  ToolTip="Double-click to select FOLDER PATH"  Padding="3,3,5,3" />
+                <TextBox x:Name="PATH2"  Height="70" Canvas.Left="310" Canvas.Top="90" Width="280" Background="White" FontFamily="Lucida Console" FontSize="14" HorizontalAlignment="Left" Text="Select FOLDER 2 PATH" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"  ToolTip="Double-click to select FOLDER PATH"  Padding="3,3,5,3" />
+                <TextBox x:Name="ReachValue" Height="26"  Width="50" Canvas.Left="520" Canvas.Top="440" FontFamily="Arial" FontSize="14" BorderBrush="Black" VerticalContentAlignment="Center" ToolTip="Maximum search ahead range." Text="200" SpellCheck.IsEnabled="True" />
+                <TextBox x:Name="BlockValue" Height="26"  Width="50" Canvas.Left="520" Canvas.Top="480" FontFamily="Arial" FontSize="14" BorderBrush="Black" VerticalContentAlignment="Center" ToolTip="The number of consecutive lines which must match to recognise synch." Text="3" />
+
+                <Frame x:Name="Frame7" Width="280" Height="66" Canvas.Left="10" Canvas.Top="360"  >
+                    <Frame.Content>
+                        <Canvas Background="#FFD0CEC0" Width="280" Grid.IsSharedSizeScope="True" >
+                            <Label x:Name="Frame7Label"  Content="File types" Height="20" Canvas.Left="10" Canvas.Top="0" Width="100" Background="{x:Null}" FontFamily="Arial" VerticalContentAlignment="Center" Padding="5,0" HorizontalContentAlignment="Center"/>
+                            <RadioButton x:Name="AllFilesOption" Content="ALL files." Height="20" Canvas.Left="9" Canvas.Top="18" Width="140" FontFamily="Arial" VerticalContentAlignment="Center" IsChecked="True" ToolTip="ALL file extensions are listed."/>
+                            <RadioButton x:Name="SelectedFilesOption" Content="Choose extensions...." Height="21" Canvas.Left="9" Canvas.Top="38" Width="140" FontFamily="Arial" VerticalContentAlignment="Center" IsChecked="false" ToolTip="Only file types selected below will be shown."/>
+
+                            <Canvas x:Name="FileExtensions" Background="#FFD0CEC0" Height="140" Width="280" Canvas.Top="63" Canvas.Left="0" >
+                                <Line  X2="270"  Y1="0" Y2="0" Stroke="#FF0C00FF" StrokeThickness="3"/>
+                                <CheckBox x:Name="Check1"  Height="24" Canvas.Left="12" Canvas.Top="0" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" IsChecked="True" Background="White" Content="*.txt" FontSize="18" />
+                                <CheckBox x:Name="Check2"  Height="24" Canvas.Left="12" Canvas.Top="25" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.vb" FontSize="18" />
+                                <CheckBox x:Name="Check3"  Height="24" Canvas.Left="12" Canvas.Top="50" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.xaml" FontSize="18" />
+                                <CheckBox x:Name="Check4"  Height="24" Canvas.Left="12" Canvas.Top="75" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.ach" FontSize="18" />
+
+                                <CheckBox x:Name="Check5"  Height="24" Canvas.Left="90" Canvas.Top="0" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.asm" FontSize="18" />
+                                <CheckBox x:Name="Check6"  Height="24" Canvas.Left="90" Canvas.Top="25" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.inc" FontSize="18" />
+                                <CheckBox x:Name="Check7"  Height="24" Canvas.Left="90" Canvas.Top="50" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.mcs" FontSize="18" />
+                                <CheckBox x:Name="Check8"  Height="24" Canvas.Left="90" Canvas.Top="75" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.mcp" FontSize="18" />
+
+                                <CheckBox x:Name="Check9"  Height="24" Canvas.Left="170" Canvas.Top="0" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.ino" FontSize="18" />
+                                <CheckBox x:Name="Check10"  Height="24" Canvas.Left="170" Canvas.Top="25" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.raw" FontSize="18" />
+                                <CheckBox x:Name="Check11"  Height="24" Canvas.Left="170" Canvas.Top="50" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.c" FontSize="18" />
+                                <CheckBox x:Name="Check12"  Height="24" Canvas.Left="170" Canvas.Top="75" Width="75" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="*.h" FontSize="18" />
+
+                                <TextBox x:Name="Text1" Height="26"  Width="88" Canvas.Left="140" Canvas.Top="105" FontFamily="Arial" FontSize="14" BorderBrush="Black" VerticalContentAlignment="Center" ToolTip="Accept any file type written in this box." />
+                                <Label x:Name="OtherExt" Content="Type here >" Height="24" Canvas.Left="38" Canvas.Top="105" Width="97" FontSize="16" Padding="10,0,0,0" OverridesDefaultStyle="True"/>
+                            </Canvas>
+
+                        </Canvas>
+                    </Frame.Content>
+                </Frame>
+
+
+
+                <Canvas Height="86" Canvas.Left="310" Canvas.Top="360" Width="160" Background="#FFD0CEC0">
+
+                    <CheckBox x:Name="NoSpace"  Height="21" Canvas.Left="4" Canvas.Top="2" Width="150" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="Ignore spaces" FontSize="18" Padding="5,0,0,0" Margin="0" ToolTip="Different numbers of consecutive spaces are ignored." />
+                    <CheckBox x:Name="NoTab"  Height="21" Canvas.Left="4" Canvas.Top="42" Width="150" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="Ignore TABS" FontSize="18" Padding="5,0,0,0" Margin="0" />
+                    <CheckBox x:Name="BlankSkip"  Height="21" Canvas.Left="4" Canvas.Top="22" Width="150" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="Skip blank lines" FontSize="18" Padding="5,0,0,0" Margin="0" RenderTransformOrigin="0.527,1.568" ToolTip="DIfferent numbers of blank lines are ignored." />
+                    <CheckBox x:Name="TabsShow"  Height="21" Canvas.Left="4" Canvas.Top="62" Width="150" VerticalContentAlignment="Center" FontFamily="Arial" Background="White" Content="Show TABS" FontSize="18" Padding="5,0,0,0" Margin="0" />
+
+                </Canvas>
+
+                <Button x:Name="SwapButton" Content="SWAP" Height="35" Canvas.Left="320" Canvas.Top="15" Width="51.448" FontSize="14" Background="Blue" Foreground="White" Visibility="Hidden"/>
+                <Button x:Name="CompareFiles" Content="COMPARE" Height="30" Canvas.Left="400" Canvas.Top="15" Width="122.414" FontSize="18" Background="#FF9CA1FF" Cursor="None" Visibility="Hidden"/>
+                <Label x:Name="ReachSize" Content="Look ahead by..." Height="34.637" Canvas.Left="380" Canvas.Top="435" Width="140" FontFamily="Times New Roman" FontSize="17" HorizontalAlignment="Left" VerticalContentAlignment="Center" IsHitTestVisible="True" Foreground="White" ForceCursor="True" ToolTip="Maximum search ahead range."/>
+                <Label x:Name="Block" Content="Line match..." Height="34.637" Canvas.Left="380" Canvas.Top="478" Width="140" FontFamily="Times New Roman" FontSize="17" HorizontalAlignment="Left" VerticalContentAlignment="Center" IsHitTestVisible="True" Foreground="White" ForceCursor="True" ToolTip="The number of consecutive lines which must match to recognise synch."/>
+
+                <Label x:Name="SynchB" Content="SYNCHB ??" Height="34.637" Canvas.Left="310" Canvas.Top="531.363" Width="280" FontFamily="Times New Roman" FontSize="12" HorizontalAlignment="Left" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsHitTestVisible="True" Foreground="White" ForceCursor="True" ToolTip="Used as a debug indicator of synch method used."/>
+
+
+            </Canvas>
+        </Grid>
+    </Viewbox>
+
+</Window>
