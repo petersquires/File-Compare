@@ -159,6 +159,7 @@
   <ItemGroup>
     <Content Include="CHORD.WAV" />
     <Content Include="DING.WAV" />
+    <Resource Include="New file.txt" />
     <Resource Include="NOTE11.ICO" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
